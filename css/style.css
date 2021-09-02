@@ -1,0 +1,28 @@
+/* reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#campo {
+    width: 1000px;
+    margin: auto;
+    display: flex;
+    /* al padre */
+    flex-wrap: wrap;
+}
+
+.quadrato {
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 35px;
+    color: black;
+}
+
+.quadrato.clicco {
+    background-color:yellow;
+}
