@@ -3,11 +3,12 @@
 
 // Consegna:
 
-// Il computer deve generare 16 numeri casuali tra 1 e 100(bombe).
-// I numeri non possono essere duplicati.
+
 // In seguito il giocatore clicca sulle celle numerate(non può cliccare più volte sulla stessa cella)
 // La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
 // Al termine della partita il software deve comunicare il punteggio.
+
+
 //     BONUS: (da fare solo se funziona tutto il resto)
 // all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
 // con difficoltà 0 => tra 1 e 100
@@ -26,15 +27,43 @@ numeroQuadrati(quadratini);
 
 
 
-document.getElementById("campo").addEventListener("click",
-    function (event) {
-        // l'elemento del dom su cui clicco
-        event.target.classList.toggle("clicco")
-        console.log(event.target.innerText);
-    }
-);
+// document.getElementById("campo").addEventListener("click",
+//     function (event) {
+//         // l'elemento del dom su cui clicco
+//         event.target.classList.toggle("clicco")
+//         console.log(event.target.innerText);
+//     }
+// );
 
 
+
+// --------------------debugging----------------------------------------
+
+
+arrayNumeriCliccati = [];
+
+    document.getElementById("campo").addEventListener("click",
+        function (event) {
+            // l'elemento del dom su cui clicco
+            event.target.classList.toggle("clicco")
+            console.log('numero cliccato');
+
+            //numero cliccato salvato come stringa
+
+            console.log(parseInt(event.target.innerText));
+            //numero cliccato verrà pushato in un array
+            //come pushare un array?
+            arrayNumeriCliccati.push(parseInt(event.target.innerText));
+            return arrayNumeriCliccati;
+        }
+    );
+
+//    -----------------debugging---------------------------------
+
+
+
+// Il computer deve generare 16 numeri casuali tra 1 e 100(bombe).
+// I numeri non possono essere duplicati.
 
 var bombe = generaArrayNumeriRandom();
 // genero numero random
@@ -43,7 +72,7 @@ function generaNumeroRandom(max) {
     // console.log ("numero Random:" + numeroRandom);
     return numeroRandom;
 }
-generaNumeroRandom(100);
+generaArrayNumeriRandom(100);
 
 
 
@@ -59,4 +88,8 @@ function generaArrayNumeriRandom() {
     return numeriRandom;
 }
 console.log(generaArrayNumeriRandom());
+
+
+
+
 
