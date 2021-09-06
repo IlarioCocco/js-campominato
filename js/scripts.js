@@ -47,13 +47,6 @@ arrayNumeriCliccati = [];
             event.target.classList.toggle("clicco")
             console.log('numero cliccato');
 
-
-            if (generaArrayNumeriRandom.length == arrayNumeriCliccati.length) {
-                alert("hai perso");
-            } else if (generaArrayNumeriRandom.length != arrayNumeriCliccati.length) {
-                alert("hai vinto");
-            }
-
             //numero cliccato salvato come stringa
 
             console.log(parseInt(event.target.innerText));
@@ -106,3 +99,9 @@ if (generaArrayNumeriRandom === arrayNumeriCliccati) {
 }
 
 
+
+// if (generaArrayNumeriRandom.length == arrayNumeriCliccati.length) {
+//     alert("hai perso");
+// } else if (generaArrayNumeriRandom.length != arrayNumeriCliccati.length) {
+//     alert("hai vinto");
+// }
