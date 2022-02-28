@@ -1,107 +1,122 @@
-// Esercizio di oggi: Campo Minato
+// Esercizio: Campo Minato
 // nome repo: js - campominato
 
-// Consegna:
+
+// FUNZIONI ---------------------------------------------------------------------------
+
+// inserire 100 quadratini nel div id = #campo tramite JS!
+// dato il numero di celle disegna il campo da gioco
+function creaCampo(nCelle) {
+    for (var i = 1; i <= nCelle; i++) {
+        document.getElementById("campo").innerHTML += `<div class="quadrato">${i}</div>`; //template literal
+    }
+}
+// // l'utente disegna il campo da gioco
+// var nCelle = prompt("Crea Campo Minato maggiore del numero Bombe = 16");
+// creaCampo(nCelle);
+
+
+// dato l array e l'elemento da cercare 
+// restituisce true se l'elemento è presente altrimenti false
+// CICLO WHILE INDEFINITO
+function inArray(arr, el) {
+    var i = 0;
+ 
+    while(i < inArray.length) {
+        if (arr[i] == el) {
+            return true;
+        } 
+        i++;
+    }   
+    return false;
+}
+
+
+
+// dato un range di numeri restituisce numeri Random
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
+
+// FUNZIONI -----------------------------------------------------------------------------
+
+
+
+
+
+
+// PROGRAMMA PRINCIPALE ------------------------------------------------------------------
+
+// variabili di base
+var nBombe = 16;
+var numeroCelle = 100; //100,80.50
+var possibilita = numeroCelle - nBombe;
+
+
+
+// // Il computer deve generare 16 numeri casuali tra 1 e 100(bombe).
+// // I numeri non possono essere duplicati.
+var bombe = [];
+
+// ciclo per 16 volte
+while(bombe.length < nBombe) {
+    // inserisco i numer nell'array delle Bombe
+    var numero = getRndInteger(1, numeroCelle);
+    // se il numero NON è presente nell' array delle bombe lo inserisco
+    if (inArray(bombe, numero) == false) {
+        bombe.push(numero);
+    }
+}
+console.log(bombe);
+
+
+
+
+// //da sistema
+creaCampo(100);
+
+// al click sulle celle del campo da gioco
+// in seguito il giocatore clicca su un numero vietato o sule celle delle bombe
+// In seguito il giocatore clicca sulle celle numerate(non può cliccare più volte sulla stessa cella)
+// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
+var numeriValidi =[];
+
+document.getElementById("campo").addEventListener("click", //Si tratta di un oggetto che contiene alcune informazioni circa l'evento che è stato scatenato: cose come il bottone del mouse che è stato premuto o il tasto della tastiera che abbiamo schiacciato.
+    function (event) {
+        console.log(event.target);
+        // l'elemento del dom su cui clicco
+          // .target è l'elemento che è stato cliccato
+        // mi salvo il numero della casella
+        event.target.classList.add("cliccato");
+      
+        var numeroCliccato = parseInt(event.target.innerHTML);
+        console.log(numeroCliccato);
+        // se il numero cliccato è presente nell'array delle BOMBE hai perso! il punteggio
+        // altrimenti se hai già cliccato ti AVVISO !   
+        // altrimenti è un numero consentito 
+        if (inArray(bombe, numeroCliccato) == true) {
+            alert("hai perso!!");
+        } else if(inArray(numeriValidi, numeroCliccato) == true) {
+            alert("hai gia cliccato");
+        } else {
+            numeriValidi.push(numeroCliccato);
+            event.target.classList.add("cliccato");
+            if(numeriValidi.length == possibilita) {
+                alert("hai finito il gioco");
+            }
+        }
+    }
+);
+
+// PROGRAMMA PRINCIPALE ------------------------------------------------------------------
+
+
 
 
 
 // Al termine della partita il software deve comunicare il punteggio.
-
-
 //     BONUS: (da fare solo se funziona tutto il resto)
 // all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
 // con difficoltà 0 => tra 1 e 100
 // con difficoltà 1 => tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
-
-
-// inserire 100 quadratini nel div #campo
-function numeroQuadrati(quadratini) {
-    for (var i = 1; i <= quadratini; i++) {
-        document.getElementById("campo").innerHTML += `<div class="quadrato">${i}</div>`;
-    }
-}
-var quadratini = prompt("inserisci il numero di Quadratini");
-numeroQuadrati(quadratini);
-
-
-
-// document.getElementById("campo").addEventListener("click",
-//     function (event) {
-//         // l'elemento del dom su cui clicco
-//         event.target.classList.toggle("clicco")
-//         console.log(event.target.innerText);
-//     }
-// );
-
-
-
-// --------------------debugging----------------------------------------
-
-
-arrayNumeriCliccati = [];
-
-    document.getElementById("campo").addEventListener("click",
-        function (event) {
-            // l'elemento del dom su cui clicco
-            event.target.classList.toggle("clicco")
-            console.log('numero cliccato');
-
-            //numero cliccato salvato come stringa
-
-            console.log(parseInt(event.target.innerText));
-            //numero cliccato verrà pushato in un array
-            //come pushare un array?
-            arrayNumeriCliccati.push(parseInt(event.target.innerText));
-            return arrayNumeriCliccati;
-        }
-    );
-
-//    -----------------debugging---------------------------------
-
-
-
-// Il computer deve generare 16 numeri casuali tra 1 e 100(bombe).
-// I numeri non possono essere duplicati.
-
-var bombe = generaArrayNumeriRandom();
-// genero numero random
-function generaNumeroRandom(max) {
-    var numeroRandom = (Math.floor(Math.random() * max) + 1);
-    // console.log ("numero Random:" + numeroRandom);
-    return numeroRandom;
-}
-generaArrayNumeriRandom(100);
-
-
-
-function generaArrayNumeriRandom() {
-    var numeriRandom = [];
-    while (numeriRandom.length < 16) {
-        var numeroCasuale = generaNumeroRandom(100);
-        var cerca = numeriRandom.includes(numeroCasuale);
-        if (cerca == false) {
-            numeriRandom.push(numeroCasuale);
-        }
-    }
-    return numeriRandom;
-}
-console.log(generaArrayNumeriRandom());
-
-
-
-// In seguito il giocatore clicca sulle celle numerate(non può cliccare più volte sulla stessa cella)
-// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
-if (generaArrayNumeriRandom === arrayNumeriCliccati) {
-    alert("hai perso");
-} else if (generaArrayNumeriRandom !== arrayNumeriCliccati) {
-    alert("hai vinto");
-}
-
-
-
-// if (generaArrayNumeriRandom.length == arrayNumeriCliccati.length) {
-//     alert("hai perso");
-// } else if (generaArrayNumeriRandom.length != arrayNumeriCliccati.length) {
-//     alert("hai vinto");
-// }
