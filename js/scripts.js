@@ -18,7 +18,7 @@ function creaCampo(nCelle) {
 
 // dato l array e l'elemento da cercare 
 // restituisce true se l'elemento è presente altrimenti false
-// CICLO WHILE INDEFINITO
+// CICLO WHILE INDEFINITO COMPRESO COUNT DI i
 function inArray(array, elemento) {
     var i = 0;
  
@@ -43,10 +43,12 @@ function getRndInteger(min, max) {
 
 
 
-
-
 // PROGRAMMA PRINCIPALE ------------------------------------------------------------------
-var livello = parseInt(prompt("Scegli il tuo Livello: 0 ~ 1 ~ 2"))
+do {
+    var livello = parseInt(prompt("Scegli il tuo Livello: 0 ~ 1 ~ 2"))
+
+}   while (livello != 0 && livello != 1 && livello != 2) 
+
 if (livello == 0) {
     numeroCelle = 100;
     alert("HAI SCELTO 100 CELLE ~ GOOD LUCK!")
@@ -57,8 +59,6 @@ if (livello == 0) {
     numeroCelle = 50;
     alert("HAI SCELTO 50 CELLE ~ GOOD LUCK!")
 }  
-
-
 
 
 
