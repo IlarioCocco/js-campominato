@@ -11,9 +11,9 @@ function creaCampo(nCelle) {
         document.getElementById("campo").innerHTML += `<div class="quadrato">${i}</div>`; //template literal
     }
 }
-// // l'utente disegna il campo da gioco
-// var nCelle = prompt("Crea Campo Minato maggiore del numero Bombe = 16");
-// creaCampo(nCelle);
+// l'utente disegna il campo da gioco
+// var numeroCelle = prompt("Crea Campo Minato maggiore del numero Bombe = 16");
+// creaCampo(numeroCelle);
 
 
 // dato l array e l'elemento da cercare 
@@ -22,7 +22,7 @@ function creaCampo(nCelle) {
 function inArray(arr, el) {
     var i = 0;
  
-    while(i < inArray.length) {
+    while( i < inArray.length ) {
         if (arr[i] == el) {
             return true;
         } 
@@ -49,7 +49,7 @@ function getRndInteger(min, max) {
 
 // variabili di base
 var nBombe = 16;
-var numeroCelle = 100; //100,80.50
+var numeroCelle = 50; //100,80.50
 var possibilita = numeroCelle - nBombe;
 
 
@@ -72,8 +72,8 @@ console.log(bombe);
 
 
 
-// //da sistema
-creaCampo(100);
+//da sistema
+creaCampo(numeroCelle);
 
 // al click sulle celle del campo da gioco
 // in seguito il giocatore clicca su un numero vietato o sule celle delle bombe
@@ -82,20 +82,23 @@ creaCampo(100);
 var numeriValidi =[];
 
 document.getElementById("campo").addEventListener("click", //Si tratta di un oggetto che contiene alcune informazioni circa l'evento che è stato scatenato: cose come il bottone del mouse che è stato premuto o il tasto della tastiera che abbiamo schiacciato.
+    
     function (event) {
-        console.log(event.target);
-        // l'elemento del dom su cui clicco
-          // .target è l'elemento che è stato cliccato
+
+        console.log(event);
+        // event.target è l'elemento del dom su cui clicco
         // mi salvo il numero della casella
-        event.target.classList.add("cliccato");
+        // event.target.classList.add("cliccato");
       
         var numeroCliccato = parseInt(event.target.innerHTML);
         console.log(numeroCliccato);
+
         // se il numero cliccato è presente nell'array delle BOMBE hai perso! il punteggio
         // altrimenti se hai già cliccato ti AVVISO !   
         // altrimenti è un numero consentito 
         if (inArray(bombe, numeroCliccato) == true) {
-            alert("hai perso!!");
+            alert(`hai perso!!! hai utilizzato ${numeriValidi.length} Caselle` ); //semplifico utilizzando il templete literal
+            location.reload(); // aggiorna il campo minato
         } else if(inArray(numeriValidi, numeroCliccato) == true) {
             alert("hai gia cliccato");
         } else {
