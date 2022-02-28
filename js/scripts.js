@@ -46,10 +46,24 @@ function getRndInteger(min, max) {
 
 
 // PROGRAMMA PRINCIPALE ------------------------------------------------------------------
+var livello = parseInt(prompt("Scegli il tuo Livello: 0 ~ 1 ~ 2"))
+if (livello == 0) {
+    numeroCelle = 100;
+    alert("HAI SCELTO 100 CELLE ~ GOOD LUCK!")
+} else if (livello == 1) {
+    numeroCelle = 70;
+    alert("HAI SCELTO 70 CELLE ~ GOOD LUCK!")
+}  else {
+    numeroCelle = 50;
+    alert("HAI SCELTO 50 CELLE ~ GOOD LUCK!")
+}  
+
+
+
+
 
 // variabili di base
 var nBombe = 16;
-var numeroCelle = 50; //100,80.50
 var possibilita = numeroCelle - nBombe;
 
 
