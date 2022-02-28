@@ -19,11 +19,11 @@ function creaCampo(nCelle) {
 // dato l array e l'elemento da cercare 
 // restituisce true se l'elemento è presente altrimenti false
 // CICLO WHILE INDEFINITO
-function inArray(arr, el) {
+function inArray(array, elemento) {
     var i = 0;
  
-    while( i < inArray.length ) {
-        if (arr[i] == el) {
+    while( i < array.length ) {
+        if (array[i] == elemento) {
             return true;
         } 
         i++;
