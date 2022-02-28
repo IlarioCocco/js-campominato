@@ -97,7 +97,7 @@ document.getElementById("campo").addEventListener("click", //Si tratta di un ogg
         // altrimenti se hai già cliccato ti AVVISO !   
         // altrimenti è un numero consentito 
         if (inArray(bombe, numeroCliccato) == true) {
-            alert(`hai perso!!! hai utilizzato ${numeriValidi.length} Caselle` ); //semplifico utilizzando il templete literal
+            alert(`hai perso!!! il tuo punteggio è  ${numeriValidi.length} !` ); //semplifico utilizzando il templete literal
             location.reload(); // aggiorna il campo minato
         } else if(inArray(numeriValidi, numeroCliccato) == true) {
             alert("hai gia cliccato");
